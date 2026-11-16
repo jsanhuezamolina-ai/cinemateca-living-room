@@ -1,0 +1,30 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Artefactos de herramientas y del build de Android
+android/app/build/
+android/.gradle/
+android/local.properties
+*.apk
+
+android/app/src/main/assets/
+
+# Media de prueba y capturas: nunca al repositorio
+*.mp4
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.m4a
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+!android/app/src/main/res/**/*.png

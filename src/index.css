@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0B0F19;
+    color: #F8FAFC;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Android TV D-Pad Luminescent Focus System */
+.tv-focus-card {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+  opacity: 0.85;
+}
+
+.tv-focus-card[data-focused="true"],
+.tv-focus-card:focus-visible {
+  transform: scale(1.08);
+  opacity: 1;
+  border-color: #00D2FF;
+  box-shadow: 0 0 24px 6px rgba(0, 210, 255, 0.45);
+  z-index: 30;
+  outline: none;
+}
+
+.tv-focus-button {
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 160ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 160ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tv-focus-button[data-focused="true"],
+.tv-focus-button:focus-visible {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px 6px rgba(0, 210, 255, 0.45);
+  outline: none;
+}
+
+/* Hide scrollbars on horizontal 10-foot media rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Marquee animation for overflowing focused card titles */
+@keyframes tv-marquee {
+  0%, 15% {
+    transform: translateX(0%);
+  }
+  80%, 100% {
+    transform: translateX(-45%);
+  }
+}
+
+.animate-tv-marquee {
+  display: inline-block;
+  min-width: 100%;
+  animation: tv-marquee 7s linear infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tv-focus-card,
+  .tv-focus-button {
+    transition: none;
+  }
+  .animate-tv-marquee {
+    animation: none;
+  }
+}
+
+/* Horizontal Android TV Photo Slideshow Transitions */
+@keyframes ken-burns-pan {
+  0% {
+    transform: scale(1) translate3d(0%, 0%, 0);
+  }
+  100% {
+    transform: scale(1.1) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns-pan 9s ease-out forwards;
+}
